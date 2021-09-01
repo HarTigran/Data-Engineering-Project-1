@@ -44,4 +44,4 @@ def echo(name):
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
-uvicorn.run(app, port=8080, host='0.0.0.0')
+    uvicorn.run(application, port=8080, host='0.0.0.0')
