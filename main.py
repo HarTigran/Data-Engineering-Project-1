@@ -5,16 +5,6 @@ import uvicorn
 
 application = FastAPI()
 
-# The hight of ISS from ground
-#h = 400
-
-
-# Distance from you to ISS
-
-#dist = (h**2 + dist_on_ground**2)**0.5
-
-#print ('The distance between you and Current position of the ISS is about \n {} km'.format(round(dist_on_ground),2))
-
 @application.get('/')
 async def root():
     r = requests.get('http://api.open-notify.org/iss-now.json')
@@ -54,6 +44,4 @@ async def add(longitude: str, latitude: str):
 
 # run the app.
 if __name__ == "__main__":
-    # Setting debug to True enables debug output. This line should be
-    # removed before deploying a production app.
     uvicorn.run(application, port=8080, host='0.0.0.0')
