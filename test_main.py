@@ -14,7 +14,7 @@ def ping():
         float(your_long)
         float(your_lat)
     except ValueError:
-        print("Link is unavailable")
+        return "Link is unavailable"
 
 def test_link_check():
     assert ping() != 'Link is unavailable'
