@@ -16,4 +16,5 @@ def ping():
     except ValueError:
         print("Link is unavailable")
 
-assert ping() != 'Link is unavailable'
+def test_link_check():
+    assert ping() != 'Link is unavailable'
