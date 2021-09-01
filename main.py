@@ -15,8 +15,8 @@ application = FastAPI()
 
 #print ('The distance between you and Current position of the ISS is about \n {} km'.format(round(dist_on_ground),2))
 
-@application.route('/')
-def issdist():
+@application.get('/')
+async def root():
     r = requests.get('http://api.open-notify.org/iss-now.json')
     iss_long = r.json()['iss_position']['longitude']
     iss_lat = r.json()['iss_position']['latitude']
@@ -34,11 +34,11 @@ def issdist():
     print("The distance between you and Current position of the ISS is about:")
     return {'you':b.json()['city'],"dist_to_you":str(dist_on_ground), 'unit':'km'}
 
-@application.route('/echo/<name>')
-def echo(name):
+@application.get('/add/{num1}')
+async def echo(name):
     print(f"This was placed in the url: new-{name}")
     val = {"new-name": name}
-    return jsonify(val)
+    return val
 
 # run the app.
 if __name__ == "__main__":
