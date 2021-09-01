@@ -34,11 +34,23 @@ async def root():
     print("The distance between you and Current position of the ISS is about:")
     return {'you':b.json()['city'],"dist_to_you":str(dist_on_ground), 'unit':'km'}
 
-@application.get('/add/{num1}')
-async def echo(name):
-    print(f"This was placed in the url: new-{name}")
-    val = {"new-name": name}
-    return val
+@application.get("/add/{longitude}/{latitude}")
+async def add(longitude: str, latitude: str):
+    r = requests.get('http://api.open-notify.org/iss-now.json')
+    iss_long = r.json()['iss_position']['longitude']
+    iss_lat = r.json()['iss_position']['latitude']
+
+    your_long = longitude
+    your_lat = latitude
+
+    coords_1 = (float(iss_lat), float(iss_long))
+    coords_2 = (float(your_lat), float(your_long))
+
+    # Distance from your location to the location of ISS in ground
+    dist_on_ground = round(distance.distance(coords_1, coords_2).km,2)
+    """Returns distance from ISS."""
+    print("The distance between provided point and Current position of the ISS is about:")
+    return {"ISS_dist_to_point_is":str(dist_on_ground), 'unit':'km'}
 
 # run the app.
 if __name__ == "__main__":
