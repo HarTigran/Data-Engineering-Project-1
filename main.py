@@ -30,7 +30,7 @@ async def root():
 
     # Distance from your location to the location of ISS in ground
     dist_on_ground = round(distance.distance(coords_1, coords_2).km,2)
-    """Return a your distance from ISS."""
+    # Return a your distance from ISS
     print("The distance between you and Current position of the ISS is about:")
     return {'you':b.json()['city'],"dist_to_you":str(dist_on_ground), 'unit':'km'}
 
@@ -48,7 +48,7 @@ async def add(longitude: str, latitude: str):
 
     # Distance from your location to the location of ISS in ground
     dist_on_ground = round(distance.distance(coords_1, coords_2).km,2)
-    """Returns distance from ISS."""
+    # Returns distance from ISS."""
     print("The distance between provided point and Current position of the ISS is about:")
     return {"ISS_dist_to_point_is":str(dist_on_ground), 'unit':'km'}
 
