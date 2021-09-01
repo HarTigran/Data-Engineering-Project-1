@@ -31,9 +31,9 @@ jobs:
       #- name: Lint with pylint
        # run: |
         #  make lint
-      #- name: Test with pytest
-       # run: |
-        #  make test
-      - name: Format code
+      - name: Test with pytest
         run: |
-          make format
+          make test
+      #- name: Format code
+       # run: |
+       #   make format
